@@ -1,12 +1,5 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
-
-# is it possible for you to make the notes of what explained in this video
-
-[https://youtu.be/6ZquiVH8AGU?si=UnAdElGgg0msWfkD](https://youtu.be/6ZquiVH8AGU?si=UnAdElGgg0msWfkD)
-
-Here are detailed notes summarizing the key concepts and technical explanations covered in the video “Database Indexing: How DBMS Indexing done to improve search query performance?” by Shrayansh.[^1]
-
-***
+#[link of youtube tutorial](https://youtu.be/6ZquiVH8AGU?si=UnAdElGgg0msWfkD)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6ZquiVH8AGU?si=6lZ4z0NvPaaPGTgK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### How Data is Stored in DBMS
 
@@ -32,11 +25,11 @@ Here are detailed notes summarizing the key concepts and technical explanations 
 
 ### What is Indexing? Types of Indexes
 
-- **Indexing** is the method by which the DBMS makes data retrieval more efficient.
+- **Indexing** is the method by which the DBMS makes data retrieval more efficient by improving the performance of query.
 - Two main types:
     - **Clustered Indexing**: The actual data rows are stored in the order of the index; there is only one clustered index per table.
     - **Non-Clustered Indexing**: The index contains pointers to the row data, which can be stored in various locations.
-
+-Note-- without indexing the seach operarion would be O(N) time complexity
 ***
 
 ### Data Structures Used in Indexing
