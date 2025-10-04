@@ -30,11 +30,18 @@
 - **Indexing** is the method by which the DBMS makes data retrieval more efficient by improving the performance of query.
 - Two main types:
     - **Clustered Indexing**: The actual data rows are stored in the order of the index; there is only one clustered index per table.
-    - **Non-Clustered Indexing**: The index contains pointers to the row data, which can be stored in various locations.
--Note-- without indexing the seach operarion would be O(N) time complexity
+    -                         by default the Primary gets the periority for cluster key, if Pk is not present then DBMS creates an additional                                  incremental key which will be use for B+ tree creation.
+    - **Non-Clustered Indexing**: The index contains pointers to the row data, which can be stored in various locations. there can multiple secondary cluster key.
+- *Note :* without indexing the seach operarion would be O(N) time complexity
 ***
 
 ### Data Structures Used in Indexing
+
+           [25]
+          /     \
+     [17,19]   [25,30]
+    /   |   \   /   |   \
+[1,6] [17] [19] [25] [30]
 
 - Most RDBMSs use the **B+ Tree (or B-Tree)** data structure for implementing indexes.
 - B+ Trees have these properties:
@@ -47,9 +54,8 @@
 ***
 
 ### How B+ Tree Indexing Works
-
 - Leaf nodes of the B+ Tree store the **actual index values** and pointers to their corresponding data rows/pages.
-- Internal/root nodes store key values strictly to aid traversal, not actual data pointers.
+- Internal/root nodes store key values strictly to aid traversal, not actual data pointers.(since it is in sorted order so help in searching by   pointing wheather to go to left of right)
 - When rows are inserted, the B+ Tree index is updated. If a data page is full, it is split and appropriate pointers are updated. The index reflects changes immediately for consistent search paths.
 - Each index value entry points to the page (or row) location where the full row data is stored.
 
@@ -60,8 +66,21 @@
 - When a new row is inserted:
     - The DBMS finds the correct place in the B+ Tree index for this row’s value.
     - If the relevant data page is not full, the row is inserted and the B+ Tree is updated with its page pointer.
+    - Also each page has pointer to data block also
     - If the data page is full, a **page split** occurs: contents are distributed between old and new pages, and the index is updated for all involved keys and pointers.
-- The index entries maintain the mapping between indexed values and the actual data pages (and, via the DBMS mapping, to the physical data block).
+- The index entries maintain the mapping between indexed values and the actual data pages (and, via the DBMS mapping, to the physical data
+block).
+
+Insert key K:  
+    ↓  
+Traverse B+ Tree index for correct leaf for K  
+    ↓  
+Find Data Page indicated by leaf node/pointer  
+    ↓  
+IF Page has space:  
+    Insert record  
+ELSE:  
+    Split page, redistribute, update index  
 
 ***
 
