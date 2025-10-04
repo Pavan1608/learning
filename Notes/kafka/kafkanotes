@@ -1,0 +1,369 @@
+Complete Kafka Developer Guide - Basics to Advanced
+Table of Contents
+
+Kafka Fundamentals
+Core Concepts
+Kafka Architecture
+Producers
+Consumers
+Kafka Connect
+Kafka Streams
+Configuration Deep Dive
+Best Practices
+Hands-on Practice
+
+Kafka Fundamentals
+What is Apache Kafka?
+
+Distributed streaming platform designed for high-throughput, fault-tolerant, real-time data streaming
+Publish-subscribe messaging system that can handle trillions of events per day
+Storage system that can store streams of records in a fault-tolerant way
+Stream processing platform for real-time analytics
+
+Key Benefits
+
+High Throughput: Millions of messages per second
+Scalability: Horizontal scaling across multiple brokers
+Durability: Data persistence with configurable retention
+Fault Tolerance: Replication and automatic failover
+Real-time Processing: Low-latency message delivery
+
+Core Concepts
+1. Topics
+
+Definition: Named feed or category of messages
+Partitioning: Topics are divided into partitions for scalability
+Ordering: Messages within a partition are ordered
+Retention: Configurable retention period (time or size based)
+
+2. Partitions
+
+Purpose: Enable parallel processing and scalability
+Key-based routing: Messages with same key go to same partition
+Leader-Follower model: Each partition has one leader and multiple followers
+Offset: Unique identifier for each message within a partition
+
+3. Brokers
+
+Definition: Kafka server that stores and serves data
+Cluster: Multiple brokers form a Kafka cluster
+Leader election: Automatic leader selection for partitions
+Load balancing: Distributes partitions across brokers
+
+4. Producers
+
+Role: Applications that publish messages to topics
+Serialization: Convert objects to byte arrays
+Partitioning: Determine which partition to send messages
+Acknowledgment: Configurable delivery guarantees
+
+5. Consumers
+
+Role: Applications that read messages from topics
+Consumer Groups: Load balancing among multiple consumers
+Offset management: Track reading position
+Deserialization: Convert byte arrays back to objects
+
+Kafka Architecture
+Cluster Architecture
+┌─────────────────────────────────────────────────────────────┐
+│                    Kafka Cluster                            │
+│                                                             │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
+│  │ Broker 1 │  │ Broker 2 │  │ Broker 3 │  │ Broker 4 │   │
+│  │          │  │          │  │          │  │          │   │
+│  │Topic A   │  │Topic A   │  │Topic B   │  │Topic B   │   │
+│  │Part 0    │  │Part 1    │  │Part 0    │  │Part 1    │   │
+│  └──────────┘  └──────────┘  └──────────┘  └──────────┘   │
+│                                                             │
+│                    ┌──────────┐                            │
+│                    │ZooKeeper │                            │
+│                    │Ensemble  │                            │
+│                    └──────────┘                            │
+└─────────────────────────────────────────────────────────────┘
+Data Flow
+
+Producer → Kafka Broker → Topic/Partition
+Consumer ← Kafka Broker ← Topic/Partition
+ZooKeeper manages cluster metadata and coordination
+
+Producers
+Basic Producer Concepts
+
+Fire and Forget: Send message without waiting for acknowledgment
+Synchronous Send: Wait for acknowledgment before sending next message
+Asynchronous Send: Send message and handle response via callback
+
+Key Producer Configurations
+properties# Essential configurations
+bootstrap.servers=localhost:9092
+key.serializer=org.apache.kafka.common.serialization.StringSerializer
+value.serializer=org.apache.kafka.common.serialization.StringSerializer
+
+# Performance configurations
+acks=all                    # Wait for all replicas to acknowledge
+retries=Integer.MAX_VALUE   # Retry failed sends
+batch.size=16384           # Batch size in bytes
+linger.ms=5                # Wait time before sending batch
+buffer.memory=33554432     # Total memory for buffering
+compression.type=snappy    # Compression algorithm
+
+# Reliability configurations
+enable.idempotence=true    # Prevent duplicate messages
+max.in.flight.requests.per.connection=5
+delivery.timeout.ms=120000
+request.timeout.ms=30000
+Partitioning Strategies
+
+Round Robin: Default when no key specified
+Key-based: Messages with same key go to same partition
+Custom Partitioner: Implement custom logic
+
+Consumers
+Consumer Group Concepts
+
+Load Balancing: Partitions distributed among consumers in group
+Fault Tolerance: Automatic rebalancing when consumers join/leave
+Offset Management: Track progress per partition
+
+Key Consumer Configurations
+properties# Essential configurations
+bootstrap.servers=localhost:9092
+group.id=my-consumer-group
+key.deserializer=org.apache.kafka.common.serialization.StringDeserializer
+value.deserializer=org.apache.kafka.common.serialization.StringDeserializer
+
+# Offset management
+enable.auto.commit=true
+auto.commit.interval.ms=5000
+auto.offset.reset=earliest  # latest, earliest, none
+
+# Performance configurations
+fetch.min.bytes=1
+fetch.max.wait.ms=500
+max.partition.fetch.bytes=1048576
+max.poll.records=500
+max.poll.interval.ms=300000
+session.timeout.ms=10000
+heartbeat.interval.ms=3000
+Consumer Rebalancing
+
+Triggers: Consumer joins/leaves, partition count changes
+Strategies: Range, RoundRobin, Sticky, CooperativeSticky
+Rebalance Listeners: Handle pre/post rebalance logic
+
+Kafka Connect
+Overview
+
+Purpose: Scalable, reliable data integration framework
+Connectors: Pre-built integrations for common data sources/sinks
+Distributed Mode: Scalable, fault-tolerant deployment
+Standalone Mode: Simple, single-process deployment
+
+Connector Types
+
+Source Connectors: Import data from external systems to Kafka
+Sink Connectors: Export data from Kafka to external systems
+
+Common Connectors
+
+JDBC Connector: Database integration
+File Connector: File system integration
+Elasticsearch Connector: Search engine integration
+S3 Connector: Cloud storage integration
+
+Connect Configuration
+properties# Worker configuration
+bootstrap.servers=localhost:9092
+group.id=connect-cluster
+key.converter=org.apache.kafka.connect.json.JsonConverter
+value.converter=org.apache.kafka.connect.json.JsonConverter
+key.converter.schemas.enable=false
+value.converter.schemas.enable=false
+offset.storage.topic=connect-offsets
+offset.storage.replication.factor=1
+config.storage.topic=connect-configs
+config.storage.replication.factor=1
+status.storage.topic=connect-status
+status.storage.replication.factor=1
+Kafka Streams
+Overview
+
+Stream Processing Library: Build real-time applications
+Stateless Operations: Filter, map, transform
+Stateful Operations: Aggregations, joins, windowing
+Exactly-Once Processing: Guaranteed message processing semantics
+
+Key Concepts
+
+KStream: Stream of records (insert-only)
+KTable: Table of records (update-able)
+GlobalKTable: Replicated table across all instances
+Processor Topology: DAG of processing nodes
+
+Stream Operations
+java// Stateless operations
+KStream<String, String> stream = builder.stream("input-topic");
+stream.filter((key, value) -> value.length() > 5)
+      .map((key, value) -> KeyValue.pair(key.toLowerCase(), value.toUpperCase()))
+      .to("output-topic");
+
+// Stateful operations
+KTable<String, Long> counts = stream
+    .groupByKey()
+    .count(Materialized.as("counts-store"));
+
+// Windowing
+KTable<Windowed<String>, Long> windowedCounts = stream
+    .groupByKey()
+    .windowedBy(TimeWindows.of(Duration.ofMinutes(1)))
+    .count();
+Streams Configuration
+properties# Essential configurations
+application.id=my-streams-app
+bootstrap.servers=localhost:9092
+default.key.serde=org.apache.kafka.common.serialization.Serdes$StringSerde
+default.value.serde=org.apache.kafka.common.serialization.Serdes$StringSerde
+
+# Performance configurations
+num.stream.threads=2
+commit.interval.ms=30000
+cache.max.bytes.buffering=10485760
+state.dir=/tmp/kafka-streams
+
+# Reliability configurations
+processing.guarantee=exactly_once
+replication.factor=3
+Configuration Deep Dive
+Broker Configurations
+properties# Server basics
+broker.id=0
+listeners=PLAINTEXT://localhost:9092
+log.dirs=/tmp/kafka-logs
+
+# Replication
+default.replication.factor=3
+min.insync.replicas=2
+unclean.leader.election.enable=false
+
+# Log management
+log.retention.hours=168
+log.retention.bytes=1073741824
+log.segment.bytes=1073741824
+log.cleanup.policy=delete
+
+# Performance
+num.network.threads=8
+num.io.threads=8
+socket.send.buffer.bytes=102400
+socket.receive.buffer.bytes=102400
+socket.request.max.bytes=104857600
+Topic-Level Configurations
+properties# Retention
+retention.ms=604800000
+retention.bytes=1073741824
+
+# Cleanup
+cleanup.policy=delete
+# cleanup.policy=compact
+
+# Replication
+replication.factor=3
+min.insync.replicas=2
+
+# Partitioning
+partitions=3
+
+# Compression
+compression.type=producer
+Best Practices
+Producer Best Practices
+
+Use appropriate serializers for your data types
+Set proper acks level based on durability requirements
+Enable idempotence to prevent duplicates
+Use compression to reduce network usage
+Batch messages for better throughput
+Handle errors gracefully with retries and error handling
+
+Consumer Best Practices
+
+Use consumer groups for scalability
+Handle rebalancing properly
+Commit offsets strategically
+Process messages idempotently
+Handle deserialization errors
+Monitor consumer lag
+
+Kafka Streams Best Practices
+
+Choose appropriate serdes
+Handle late-arriving data
+Use appropriate window types
+Monitor state store sizes
+Handle application restarts
+Use appropriate error handling
+
+Operations Best Practices
+
+Monitor cluster health
+Set up proper logging
+Plan for capacity
+Implement security
+Regular backups
+Performance tuning
+
+Hands-on Practice
+Environment Setup
+
+Download Kafka: Get latest version from Apache Kafka website
+Start ZooKeeper: bin/zookeeper-server-start.sh config/zookeeper.properties
+Start Kafka: bin/kafka-server-start.sh config/server.properties
+Create Topics: bin/kafka-topics.sh --create --topic test-topic --bootstrap-server localhost:9092
+
+Practice Exercises
+Exercise 1: Basic Producer/Consumer
+Create a simple producer that sends messages and a consumer that reads them.
+Exercise 2: Consumer Groups
+Set up multiple consumers in the same group and observe load balancing.
+Exercise 3: Custom Serialization
+Implement custom serializers for complex objects.
+Exercise 4: Stream Processing
+Build a Kafka Streams application that processes real-time data.
+Exercise 5: Kafka Connect
+Set up a connector to integrate with a database.
+Common Interview Questions
+
+What is Kafka and its use cases?
+Explain Kafka architecture
+How does Kafka ensure durability?
+What are consumer groups?
+Explain exactly-once semantics
+How do you handle backpressure?
+What is the difference between KStream and KTable?
+How do you monitor Kafka performance?
+Explain Kafka Connect architecture
+How do you handle schema evolution?
+
+Performance Tuning Checklist
+
+ Optimize batch size and linger time
+ Configure appropriate replication factor
+ Set proper flush settings
+ Monitor and adjust JVM settings
+ Use appropriate compression
+ Configure network buffer sizes
+ Monitor consumer lag
+ Optimize partition count
+ Configure proper retention policies
+ Use efficient serialization formats
+
+Security Considerations
+
+Authentication: SASL/SCRAM, mTLS
+Authorization: ACLs for topic/group access
+Encryption: SSL/TLS for data in transit
+Network Security: VPC, firewall rules
+Audit Logging: Track access and operations
+
+This comprehensive guide covers everything you need to know for a Kafka Developer role. Focus on hands-on practice with real scenarios and understanding the underlying concepts deeply.

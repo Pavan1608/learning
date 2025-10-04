@@ -1,0 +1,58 @@
+1. difference between string, stringBuilder, StringBuffer
+2. Internal working hashmap
+    how to make a hashmap thread safe
+3. Is string a thread safe 
+4. 
+
+
+Spring boot
+1. Entity class has 10 elements and table has 8 elements , how to ensure while saving these two elements gets removed
+2. For a class during serialization remove any specific element 
+
+
+Kafka
+1. 5 partitions assigned to 7 comsumer
+2. 7 partitions are assigned to 5 consumer
+
+
+// Zemosolabs
+React.js
+1. create a textbox like when use types it should and an backend api to provide all the suggestion and auto complete
+2. how to reduce the loading time of images and fonts
+3. 
+
+Java
+1. How substring method cause memory leak
+2. how to create application context in java
+3. 
+
+what all possible return type possble from rest mapping
+
+
+
+
+Ne
+1.Java
+  1. Spring pool
+  2. StringBuffer, StringBuilder - which is thread safe.
+  3. Exception 
+  4. try with resource 
+  5. exception throws from child is different and parrent is different which will take the periority
+  6. 
+2. Springboot
+    1. In Hibernet how to create a table directly from the entity class
+    2. MVC which servlet controls the request
+3. Git 
+    1. Git command to resolve conflict 
+
+4. coding 
+
+1. // Use this editor to write, compile and run your Java code online
+//Write a Java program to find all the start indices of anagrams of a given string in another string
+//cbaebabacd
+//'cbaebabacd': [0, 6]
+
+2. 
+//Write a Java program to reverse a singly linked list
+//1 -> 2 -> 3 -> 4 -> 5 -> null
+

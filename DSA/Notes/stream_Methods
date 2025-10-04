@@ -1,0 +1,4 @@
+return inputString.chars()
+                          .mapToObj(c -> (char) c)
+                          .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+

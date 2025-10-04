@@ -1,0 +1,60 @@
+//Array to List ;
+List<Integer> input = Arrays.stream(arr).boxed().collect(Collectors.toList());
+
+
+//List to an Array:
+res.stream().mapToInt(i->i).toArray();
+
+
+size of an array :
+int[] aar = new int;
+aar.lenght;
+
+// Sorting an array:
+Arrays.sort(arr);
+
+// Filling an array with a specific value:
+Arrays.fill(arr, value);
+
+// Copying an array:
+int[] copiedArray = Arrays.copyOf(arr, arr.length);
+
+// Comparing two arrays:
+boolean areEqual = Arrays.equals(arr1, arr2);
+
+// Searching for an element in a sorted array (binary search):
+int index = Arrays.binarySearch(arr, key);
+
+// Converting an array to a string:
+String arrayString = Arrays.toString(arr);
+
+// Creating a stream from an array:
+IntStream stream = Arrays.stream(arr);
+
+// Finding the maximum value in an array:
+int max = Arrays.stream(arr).max().getAsInt();
+
+// Finding the minimum value in an array:
+int min = Arrays.stream(arr).min().getAsInt();
+
+// Summing all elements in an array:
+int sum = Arrays.stream(arr).sum();
+
+// Checking if all elements match a condition:
+boolean allMatch = Arrays.stream(arr).allMatch(x -> x > 0);
+
+// Checking if any element matches a condition:
+boolean anyMatch = Arrays.stream(arr).anyMatch(x -> x > 0);
+
+// Counting occurrences of a specific value:
+long count = Arrays.stream(arr).filter(x -> x == value).count();
+
+// Combining two arrays into one without using streams:
+int[] combinedArray = new int[arr1.length + arr2.length];
+System.arraycopy(arr1, 0, combinedArray, 0, arr1.length);
+System.arraycopy(arr2, 0, combinedArray, arr1.length, arr2.length);
+
+// Adding an array to an existing array:
+int[] newArray = new int[arr.length + additionalArray.length];
+System.arraycopy(arr, 0, newArray, 0, arr.length);
+System.arraycopy(additionalArray, 0, newArray, arr.length, additionalArray.length);

@@ -1,0 +1,306 @@
+# Kafka Practical Exercises and Interview Preparation
+
+## Hands-on Exercises
+
+### Exercise 1: Basic Producer-Consumer Setup
+**Objective**: Create a simple producer-consumer application
+
+**Steps**:
+1. Start Kafka cluster (ZooKeeper + Broker)
+2. Create a topic with 3 partitions
+3. Implement a producer that sends 1000 messages
+4. Implement a consumer that reads messages
+5. Observe message ordering within partitions
+
+**Expected Learning**: Understanding basic Kafka operations, partitioning, and ordering guarantees.
+
+### Exercise 2: Consumer Groups and Load Balancing
+**Objective**: Understand consumer group behavior
+
+**Steps**:
+1. Create a topic with 6 partitions
+2. Start 3 consumers in the same group
+3. Observe partition assignment
+4. Add/remove consumers and observe rebalancing
+5. Check consumer lag using admin tools
+
+**Expected Learning**: Consumer group mechanics, partition assignment, rebalancing.
+
+### Exercise 3: Exactly-Once Semantics
+**Objective**: Implement exactly-once processing
+
+**Steps**:
+1. Create a transactional producer
+2. Implement idempotent message processing
+3. Use transactions to ensure atomicity
+4. Test with failures and retries
+
+**Expected Learning**: Transactional semantics, idempotency, reliability patterns.
+
+### Exercise 4: Custom Serialization
+**Objective**: Work with complex data types
+
+**Steps**:
+1. Create a custom POJO (e.g., Order, Customer)
+2. Implement custom serializer/deserializer
+3. Handle schema evolution scenarios
+4. Test with different data formats (JSON, Avro, Protobuf)
+
+**Expected Learning**: Serialization strategies, schema management, data evolution.
+
+### Exercise 5: Kafka Streams Word Count
+**Objective**: Build a stream processing application
+
+**Steps**:
+1. Create input and output topics
+2. Implement word count using Kafka Streams
+3. Test with continuous data flow
+4. Add windowing for time-based counts
+5. Implement state stores for persistence
+
+**Expected Learning**: Stream processing concepts, stateful operations, windowing.
+
+### Exercise 6: Real-time Analytics Dashboard
+**Objective**: Build an end-to-end streaming analytics solution
+
+**Steps**:
+1. Create a data pipeline: Producer → Kafka → Streams → Consumer
+2. Implement real-time metrics calculation
+3. Use multiple stream processing topologies
+4. Add error handling and monitoring
+5. Create a simple dashboard to display results
+
+**Expected Learning**: End-to-end streaming architecture, monitoring, error handling.
+
+### Exercise 7: Kafka Connect Integration
+**Objective**: Integrate Kafka with external systems
+
+**Steps**:
+1. Set up Kafka Connect cluster
+2. Configure a source connector (e.g., file, database)
+3. Configure a sink connector (e.g., Elasticsearch, S3)
+4. Test data flow and transformation
+5. Handle connector failures and recovery
+
+**Expected Learning**: Data integration patterns, connector configuration, operational aspects.
+
+### Exercise 8: Performance Optimization
+**Objective**: Tune Kafka for high throughput
+
+**Steps**:
+1. Baseline performance measurement
+2. Optimize producer configurations
+3. Optimize consumer configurations
+4. Tune broker settings
+5. Implement batch processing patterns
+6. Measure and compare performance
+
+**Expected Learning**: Performance tuning, capacity planning, optimization strategies.
+
+## Common Interview Questions and Answers
+
+### Basic Questions
+
+**Q1: What is Apache Kafka and what are its main use cases?**
+A: Apache Kafka is a distributed streaming platform designed for high-throughput, fault-tolerant, real-time data streaming. Main use cases include:
+- Real-time data pipelines
+- Event sourcing
+- Log aggregation
+- Stream processing
+- Messaging between microservices
+- Real-time analytics
+
+**Q2: Explain Kafka's architecture components.**
+A: Kafka architecture consists of:
+- **Producers**: Applications that send messages to topics
+- **Brokers**: Kafka servers that store and serve data
+- **Topics**: Named categories of messages
+- **Partitions**: Subdivisions of topics for scalability
+- **Consumers**: Applications that read messages from topics
+- **ZooKeeper**: Coordination service for cluster management
+- **Consumer Groups**: Groups of consumers for load balancing
+
+**Q3: What is a partition in Kafka?**
+A: A partition is a subdivision of a topic that enables:
+- Horizontal scaling by distributing data across multiple brokers
+- Parallel processing by allowing multiple consumers
+- Ordered message delivery within each partition
+- Load balancing across the cluster
+
+### Intermediate Questions
+
+**Q4: How does Kafka ensure message ordering?**
+A: Kafka provides ordering guarantees at the partition level:
+- Messages within a partition are strictly ordered
+- Messages with the same key are routed to the same partition
+- Global ordering requires using a single partition (limits scalability)
+- Consumers process messages in order within each partition
+
+**Q5: Explain consumer groups and rebalancing.**
+A: Consumer groups enable horizontal scaling:
+- Multiple consumers can work together to process a topic
+- Each partition is assigned to exactly one consumer in the group
+- Rebalancing occurs when consumers join/leave or partitions change
+- Rebalancing strategies: Range, RoundRobin, Sticky, CooperativeSticky
+
+**Q6: What are the different acknowledgment modes in Kafka?**
+A: Producer acknowledgment modes:
+- **acks=0**: Fire and forget (no acknowledgment)
+- **acks=1**: Wait for leader acknowledgment only
+- **acks=all/-1**: Wait for all in-sync replicas to acknowledge
+Each mode provides different durability vs. performance trade-offs.
+
+**Q7: How do you handle exactly-once semantics in Kafka?**
+A: Exactly-once semantics requires:
+- **Idempotent producers**: Prevent duplicate messages
+- **Transactional producers**: Atomic writes across partitions
+- **Transactional consumers**: Read committed data only
+- **Proper configuration**: Enable idempotence and transactions
+
+### Advanced Questions
+
+**Q8: Explain Kafka Streams architecture and processing guarantees.**
+A: Kafka Streams provides:
+- **Local state stores**: For stateful operations
+- **Processor topology**: DAG of processing nodes
+- **Exactly-once processing**: Through transactions
+- **Fault tolerance**: Through changelog topics and standby replicas
+- **Scaling**: Through stream threads and application instances
+
+**Q9: How do you monitor and troubleshoot Kafka performance issues?**
+A: Key monitoring areas:
+- **Broker metrics**: CPU, memory, disk I/O, network
+- **Topic metrics**: Message rate, byte rate, partition count
+- **Consumer metrics**: Lag, processing time, rebalance frequency
+- **Producer metrics**: Batch size, request rate, error rate
+- **JVM metrics**: GC frequency, heap usage
+
+**Q10: Describe Kafka's replication mechanism.**
+A: Kafka replication ensures fault tolerance:
+- **Leader-follower model**: One leader per partition, multiple followers
+- **In-sync replicas (ISR)**: Followers that are caught up with leader
+- **Leader election**: Automatic failover when leader fails
+- **Replication factor**: Number of replicas per partition
+- **Min in-sync replicas**: Minimum ISR required for writes
+
+### Scenario-Based Questions
+
+**Q11: How would you design a real-time fraud detection system using Kafka?**
+A: Architecture components:
+1. **Data ingestion**: Producers send transaction events to Kafka
+2. **Stream processing**: Kafka Streams for real-time analysis
+3. **Machine learning**: Integrate ML models for fraud scoring
+4. **Alerting**: Send alerts to downstream systems
+5. **State management**: Maintain user profiles and transaction history
+6. **Scaling**: Partition by user ID for parallel processing
+
+**Q12: How do you handle backpressure in Kafka?**
+A: Backpressure handling strategies:
+- **Producer-side**: Configure batch size, linger time, and buffer memory
+- **Consumer-side**: Adjust max.poll.records and processing parallelism
+- **Broker-side**: Monitor disk usage and implement quotas
+- **Application-side**: Implement circuit breakers and retry mechanisms
+- **Scaling**: Add more brokers or partitions
+
+**Q13: Explain how you would implement a event sourcing pattern with Kafka.**
+A: Event sourcing implementation:
+1. **Event store**: Use Kafka topics as immutable event log
+2. **Event serialization**: Use schema registry for evolution
+3. **Projections**: Build read models using Kafka Streams
+4. **Snapshots**: Periodic snapshots for performance
+5. **Replay**: Ability to rebuild state from events
+6. **Versioning**: Handle schema changes and migration
+
+## Performance Tuning Checklist
+
+### Producer Tuning
+```properties
+# Throughput optimization
+batch.size=32768
+linger.ms=10
+compression.type=lz4
+buffer.memory=67108864
+
+# Reliability optimization
+acks=all
+retries=Integer.MAX_VALUE
+enable.idempotence=true
+max.in.flight.requests.per.connection=5
+```
+
+### Consumer Tuning
+```properties
+# Processing optimization
+fetch.min.bytes=1024
+fetch.max.wait.ms=500
+max.poll.records=1000
+max.poll.interval.ms=300000
+
+# Network optimization
+fetch.max.bytes=52428800
+max.partition.fetch.bytes=1048576
+```
+
+### Broker Tuning
+```properties
+# Network and I/O
+num.network.threads=8
+num.io.threads=16
+socket.send.buffer.bytes=102400
+socket.receive.buffer.bytes=102400
+
+# Log management
+log.segment.bytes=1073741824
+log.retention.hours=168
+log.cleanup.policy=delete
+```
+
+### Streams Tuning
+```properties
+# Processing optimization
+num.stream.threads=4
+commit.interval.ms=30000
+cache.max.bytes.buffering=10485760
+
+# State store optimization
+state.cleanup.delay.ms=600000
+state.dir=/fast-disk/kafka-streams
+```
+
+## Troubleshooting Guide
+
+### Common Issues and Solutions
+
+**Issue**: High consumer lag
+**Solutions**:
+- Increase consumer instances
+- Optimize consumer processing logic
+- Increase partition count
+- Tune fetch configurations
+
+**Issue**: Rebalancing storms
+**Solutions**:
+- Increase session timeout
+- Optimize consumer processing time
+- Use static membership
+- Implement proper shutdown hooks
+
+**Issue**: OutOfMemoryError
+**Solutions**:
+- Increase JVM heap size
+- Optimize batch sizes
+- Check for memory leaks
+- Monitor GC behavior
+
+**Issue**: Disk space issues
+**Solutions**:
+- Adjust retention policies
+- Implement log compaction
+- Monitor disk usage
+- Archive old data
+
+## Best Practices Summary
+
+### Development Best Practices
+1. **Schema management**: Use schema registry for evolution
+2. **Error handling**: Implement proper error handling
