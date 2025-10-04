@@ -1,5 +1,7 @@
 #[link of youtube tutorial](https://youtu.be/6ZquiVH8AGU?si=UnAdElGgg0msWfkD)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6ZquiVH8AGU?si=6lZ4z0NvPaaPGTgK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+[![DB Indexing YouTube Video](https://img.youtube.com/vi/6ZquiVH8AGU/0.jpg)](https://youtu.be/6ZquiVH8AGU)
 
 ### How Data is Stored in DBMS
 
