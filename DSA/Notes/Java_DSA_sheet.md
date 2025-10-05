@@ -1,5 +1,7 @@
 # Java LeetCode All Patterns & Algorithms Cheat Sheet
 
+[LeetCode interview sheet](https://leetcode.com/explore/interview/card/cheatsheets/720/resources/4723/)
+
 ## 🎯 Essential LeetCode Patterns
 
 ### 1. Two Pointers
