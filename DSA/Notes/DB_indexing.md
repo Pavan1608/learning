@@ -16,6 +16,8 @@
 - **Data blocks** are the smallest units of physical read/write on disk (typically 4 KB to 32 KB, often 8 KB). Data pages are stored within data blocks, but the DBMS does not control which page goes into which block; that’s managed by the storage subsystem.
 - The DBMS maintains a **mapping from data page to data block addresses** for efficient retrieval.
 
+![page structure](https://learn.microsoft.com/en-us/sql/relational-databases/media/pages-and-extents-architecture-guide/page-architecture.svg?view=sql-server-ver17=10x10)
+
 ***
 
 ### Why Indexing is Needed
