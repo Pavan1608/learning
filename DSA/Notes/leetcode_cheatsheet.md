@@ -11,7 +11,7 @@ This article is a collection of cheat sheets to use while solving problems and p
 ---
 
 ## Time Complexity (Big O) Cheat Sheet
-![](/Development/images/big_o.png)
+![](/images/big_o.png)
 
 ---
 
@@ -157,7 +157,7 @@ All major languages have a built-in sort, usually `O(n⋅log n)`. For reference:
 > **Stable sort:** Maintains the relative order of records with equal keys.
 Definition of a stable sort from Wikipedia: "Stable sorting algorithms maintain the relative order of records with equal keys (i.e. values). That is, a sorting algorithm is stable if whenever there are two records R and S with the same key and with R appearing before S in the original list, R will appear before S in the sorted list."
 
-![sorting time complexity](/Development/images/sorting.png)
+![sorting time complexity](/images/sorting.png)
 
 ---
 
@@ -165,7 +165,7 @@ Definition of a stable sort from Wikipedia: "Stable sorting algorithms maintain 
 
 > Use a flowchart to decide which data structure or algorithm to use. (Not shown here; refer to your course materials.)
 
-![flowchar](/Development/images/flowchart.png)
+![flowchar](/images/flowchart.png)
 
 ---
 
