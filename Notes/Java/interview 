@@ -54,10 +54,8 @@ Ne
     ----Airtel---
     1. If a bean need a property while intialization and in run time that property changes, how to initaite a bean.
     2. what will happed if we create two different controller having same endpoint.
-    3. 
+    3. Can we distroy singleton bean during run time if yes what will be the impact.
     
-
-
     --Sandeep----
     1. If DB operation is taking time, how to impove it.
     2. How to improve the api response time.
