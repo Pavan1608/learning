@@ -13,6 +13,8 @@ Spring boot
 Kafka
 1. 5 partitions assigned to 7 comsumer
 2. 7 partitions are assigned to 5 consumer
+    ----Airtel----
+3. What database kafka uses internally to store the data.
 
 
 // Zemosolabs
@@ -38,27 +40,89 @@ Ne
   3. Exception 
   4. try with resource 
   5. exception throws from child is different and parrent is different which will take the periority
-  6. 
+    ------Airtel--------
+    6. Which GC introduced in Java17? what all GC are there.
+    7. what is pattern matching in switch case.
+
+    ----Sandeep----
+    1. Implement linked list as a set.
+    2. 
+
 2. Springboot
     1. In Hibernet how to create a table directly from the entity class
     2. MVC which servlet controls the request
+    ----Airtel---
+    1. If a bean need a property while intialization and in run time that property changes, how to initaite a bean.
+    2. what will happed if we create two different controller having same endpoint.
+    3. 
+    
+
+
+    --Sandeep----
+    1. If DB operation is taking time, how to impove it.
+    2. How to improve the api response time.
+    3. Hikari connection pool
+    4. How logging work internally - what data structure it use.
+    5. implement rest controller, exception handling, and junit.- coding
+    6. 
 3. Git 
     1. Git command to resolve conflict 
 
 4. coding 
 
-1. // Use this editor to write, compile and run your Java code online
-//Write a Java program to find all the start indices of anagrams of a given string in another string
-//cbaebabacd
-//'cbaebabacd': [0, 6]
+    1. // Use this editor to write, compile and run your Java code online
+    //Write a Java program to find all the start indices of anagrams of a given string in another string
+    //cbaebabacd
+    //'cbaebabacd': [0, 6]
 
-2. 
-//Write a Java program to reverse a singly linked list
-//1 -> 2 -> 3 -> 4 -> 5 -> null
+    2. //Write a Java program to reverse a singly linked list
+    //1 -> 2 -> 3 -> 4 -> 5 -> null
+    ---Airtel--
+     2. https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
+
+    ----Sandeep---
+    3. 
 
 
 //database
 1. SQL vs NoSQL
 2. indexing 
-3. 
+// Airtel---
+3. Herbernate entity using parent child relation
+4. Join in entity
+5. queries using joins
+----Airtel 2nd----
+6. Can we migrate from nosql to elastic search.
 
+
+
+
+React 
+: coforge----
+    * React hooks(useState, UseCallback, UseContext, UseMemo, UseReducer)
+    * Advantage of react
+    * 
+
+
+
+-------Anusha------
+Skill- Java Full stack+React developer 
+Client - Capgemini (L1)
+Panel- Bondala Kalpana
+
+Java:
+What is the new feature of Java8 about hashmap?
+What is stream API?
+What is the difference between intermediate and terminal operators?
+Code: print the first repeating character in given word
+
+SpringBoot:
+What spring design patterns do you know ?
+Explain Api gateway and circuit breaker.
+How to handle exceptions in springboot?
+
+React:
+What is controlled and uncontrolled component?
+What are the hook replacement of lifeCycle methods?
+If parent and child have useEffect, which one will be executed first?
+What is HOC?
