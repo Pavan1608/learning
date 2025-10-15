@@ -47,7 +47,15 @@ Ne
     ----Sandeep----
     1. Implement linked list as a set.
     2. 
+<<<<<<< HEAD:Notes/Java/interview 
     
+=======
+-----wipro---
+    1. excutable service 
+    2. syncronized 
+    3. object lock and class lock
+
+>>>>>>> 65988553b3cb64f0f25b76e6b4bd44fe593120a1:Notes/Java/interview
 
 2. Springboot
     1. In Hibernet how to create a table directly from the entity class
@@ -64,6 +72,9 @@ Ne
     4. How logging work internally - what data structure it use.
     5. implement rest controller, exception handling, and junit.- coding
     6. 
+    -----wipro---
+    1. main annotation 
+    2. spring hibernet and what all different spring hibernet caching are there
 3. Git 
     1. Git command to resolve conflict 
 
@@ -81,7 +92,8 @@ Ne
 
     ----Sandeep---
     3. 
-
+    4. ---wipro--
+        1. 2 SUM
 
 //database
 1. SQL vs NoSQL
@@ -92,6 +104,9 @@ Ne
 5. queries using joins
 ----Airtel 2nd----
 6. Can we migrate from nosql to elastic search.
+
+---wipro--
+database query to combine emp, department, salary table to print emp_name, depart_name and salary
 
 
 
@@ -125,3 +140,18 @@ What is controlled and uncontrolled component?
 What are the hook replacement of lifeCycle methods?
 If parent and child have useEffect, which one will be executed first?
 What is HOC?
+---
+
+--- 
+Interview Prep Topics -- Wissen Technology
+
+* ⁠DSA Basics → Medium-level problem solving, time & space complexity.
+•	Collections & Maps → HashMap internals, differences (HashMap, TreeMap, LinkedHashMap, ConcurrentHashMap).
+•	Core Java Essentials → Immutability, OOP, Garbage Collection techniques.
+•	Multithreading → Volatile, Locks (ReentrantLock, Semaphore), Atomic classes, wait/notify, concurrency utilities.
+•	Design Skills → LRU Cache, Thread Pool, Connection Pool (LLD).
+•	System Design Concepts → REST APIs, Microservices, Scalability (Load Balancing, Sharding, Consistent Hashing).
+•	Database Knowledge → SQL (ranking, aggregation), Indexing internals, Query tuning.
+•	Spring Boot & Debugging → Core concepts, annotations, handling deadlocks & memory leaks.
+
+---
