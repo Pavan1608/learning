@@ -141,8 +141,53 @@ What are the hook replacement of lifeCycle methods?
 If parent and child have useEffect, which one will be executed first?
 What is HOC?
 ---
+EPAM:
+ Qualifier: Coding:
+                1: Given a sentence in a string, concatinate first character of each word in the sentence using java8 streams.
+                2: Shift all zeros in the int array to the right without using streams.
 
 --- 
+
+Deloitte:
+L1: 
+    Difference between ArrayList and List
+    Difference between abstract and interface 
+    What is equals and hashCode contract
+    HashMap related: What happens when there are duplicate keys ( explain collision overriding of values)
+    Code and show: Abstract class and Two classes extending it and all the methods which are accessible to them
+
+    What is dependency injection
+    Name a few annotations and their uses 
+
+    Difference between PUT and POST
+    Explain GET and DELETE
+
+    Coding: You have list of strings, you need to find occurance of each string (Stream API)
+
+L2: 
+    Define abstraction 
+    Code implementation based on a usecase around abstraction 
+    Implement the above in function interface and lamba style 
+
+    Difference between primitive type and wrapper 
+    Hashmap collision scenario 
+    Guess output based on hashmap code given 
+
+    == and equals() scenario based output discussion [on String literal and new String ()]
+
+    What are the basic files that are generated when you create a spring application 
+    What is dependency injection 
+    Explain annotations: ComponentScan and EnableAutoConfiguration
+
+    Spring design patterns if known
+    Explain API Gateway 
+    Explain how frontend interacts with backend service layer
+
+    Difference between delete and truncate 
+    Write Sql query to get second largest salary from table
+
+
+---
 Interview Prep Topics -- Wissen Technology
 
 * ⁠DSA Basics → Medium-level problem solving, time & space complexity.
