@@ -1,0 +1,91 @@
+class Studentthesf {
+    public int id;
+    public String name;
+
+    public Student(String name, int id) {
+        this.name = name; 
+        this.id = id;
+    }
+
+    public int hashCode() {
+        return this.id;
+    }
+
+    public String toString() {
+        return "Student: " + this.name + "@" + Integer.toHexString(hashCode());
+    }
+
+    public boolean equals(Object o) {
+        if (o instanceof Student) {
+           Student s = (Student) o;
+           return s.id == this.id ? true : false;
+        }
+        return false;
+    }
+}
+
+public class UpdateHashSet {
+
+    public static void main(String[] args) {
+    HashSet<Student> studentList = new HashSet<>();
+
+    Student st1 = new Student("Nimit", 1);
+    Student st2 = new Student("Rahul", 3);
+    Student st3 = new Student("Nimit", 2);
+    studentList.add(st1);
+    studentList.add(st2);
+    studentList.add(st3);
+
+    System.out.println(studentList.size()); // Pavan -3
+
+    st1.id = 2;
+    System.out.println(studentList.size()); //Pavan -3
+   }
+}
+
+============================
+
+Write a Java program to print a sequence of numbers up to N using 3 threads.
+For example, if we want to print a sequence of numbers up to 10 then it’ll look like this:
+
+    THREAD-1 : 1
+    THREAD-2 : 2
+    THREAD-3 : 3
+    THREAD-1 : 4
+    THREAD-2 : 5
+    THREAD-3 : 6
+    THREAD-1 : 7
+    THREAD-2 : 8
+    THREAD-3 : 9
+    THREAD-1 : 10 
+
+
+   
+Static count = 0
+
+
+printCount()
+{
+syncronized(this){
+print(Count++);
+}
+
+MyThread g = my
+Thread1 = new Thread()
+Thread2 = new Thread()
+Thread3 = new Thread()
+
+Thread1.start();
+Thread2.start();
+Thread3.start();
+
+================================
+
+We have a csv file
+student_id, student_name, student_dob
+1, Bob, 2020-01-05
+2, Alice, 2020-01-31
+
+TreeHashMap<DateTime, LinkedList<Student>> 
+
+LinkedHashMap<DateTime, LinkedList<Student>> 
